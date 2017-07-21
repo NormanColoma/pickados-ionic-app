@@ -1,11 +1,20 @@
-<ion-header>
-  <ion-navbar>
+<ion-header *ngIf="events">
+  <ion-navbar color="elements">
     <ion-title>
-      About
+      Eventos de hoy
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content *ngIf="events" padding>
+  <ion-list>
+    <ion-item *ngFor="let event of events;">
+      <ion-avatar item-start>
+        <img src="assets/icon/football.png">
+      </ion-avatar>
+      <h2>{{ event.country_name }} > {{ event.league_name }}</h2>
+      <h3>{{ event.match_time }}</h3>
+      <p>{{ event.match_hometeam_name }} - {{ event.match_awayteam_name }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
