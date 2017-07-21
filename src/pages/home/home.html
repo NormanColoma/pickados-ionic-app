@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="elements">
     <ion-buttons end>
-       <button ion-button icon-only>
+      <button ion-button icon-only>
         <ion-icon name='menu'></ion-icon>
       </button>
     </ion-buttons>
@@ -23,26 +23,14 @@
     <ion-card-content>
       <p>{{ post.Description }}</p>
     </ion-card-content>
-
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
-      </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
-      </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          {{ post.Created_at | date: 'shortDate'}}
-        </ion-note>
-      </ion-col>
-    </ion-row>
-
+    <ion-item>
+      <ion-icon name="football" item-start large></ion-icon>
+      <h2>{{ post.GetAllPickOfPost[0].GetAllMatchOfPick[0].Competition}} > {{ post.GetAllPickOfPost[0].GetAllMatchOfPick[0].GetHomeOfEvent_home.Name}}
+        - {{ post.GetAllPickOfPost[0].GetAllMatchOfPick[0].GetAwayOfEvent_away.Name}}</h2>
+      <p>{{ post.GetAllPickOfPost[0].Odd }} {{ post.GetAllPickOfPost[0].Description }} {{ post.Stake }}/10</p>
+    </ion-item>
+    <ion-item color="primary">
+      <span item-left>{{ post.Created_at | date:'shortDate'}}</span>
+    </ion-item>
   </ion-card>
 </ion-content>
