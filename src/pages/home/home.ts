@@ -31,4 +31,16 @@ export class HomePage {
       });
   }
 
+  likePost(postId:number) {
+    this.timelineService.likePost(postId)
+      .subscribe((likes: number) => {
+        this.setLikes(likes, postId);
+      })
+  }
+
+  setLikes(likes:number, postId:number) {
+    const post = this.posts.find(post => post.Id === postId);
+    post.Likes = likes;
+  }
+
 }

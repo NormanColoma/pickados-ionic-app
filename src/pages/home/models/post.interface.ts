@@ -9,5 +9,6 @@ export interface Post {
     Stake: number,
     TotalOdd: number,
     Tipster: string,
-    GetAllPickOfPost: PickOfPost[]
+    GetAllPickOfPost: PickOfPost[],
+    Likes: number;
 }

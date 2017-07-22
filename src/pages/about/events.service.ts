@@ -24,22 +24,22 @@ export class EventService {
          const event_date = date.getFullYear()+"-"+ (date.getMonth()+1) + "-" + date.getDate();
          const EVENTS_URL = `http://52.178.29.14/api/events?from=${event_date}&to=${event_date}`;
          
-         debugger;
          return this.http
             .get(EVENTS_URL)
             .map((response : Response) => {
                 const events = JSON.parse(response.json());
                 const unstartedEvents = events
-                    .filter(ev => (ev.match_status === "" || ev.match_status === "Postp.") && ev.match_time >= time)
+                    .filter(ev => (ev.match_status === "" || ev.match_status === "Postp."))
                     .sort((a, b) => {
-                       if (a.match_time > b.match_time) {
-                            return 1;
-                        }
-                        if (a.match_time < b.match_time) {
-                            return -1;
-                        }
-                        return 0;
-                    });
+                        if (a.match_time > b.match_time) {
+                                return 1;
+                            }
+                            if (a.match_time < b.match_time) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                    
                 return unstartedEvents;
             })  
      }

@@ -9,7 +9,8 @@ import { ODDS } from "./constants/odds";
 import { LEAGUES } from "./constants/leagues";
 
 
-const API_URL : string = 'http://52.178.29.14/api/Tipster'
+const API_URL : string = 'http://52.178.29.14/api/Tipster';
+
 
 @Injectable()
 export class TimelineService {
@@ -25,22 +26,16 @@ export class TimelineService {
          
          return this.http
             .get(TIMELINE_URL, options)
-            .map((response : Response) => response.json())  
+            .map((response : Response) => response.json());
      }
 
-     getLeague(id) {
-        const league = LEAGUES
-            .find(league => league.league_id === id);
-        if (!league)
-            return "Desconocido";
-        return league.league_name;
-     }
+     likePost(postId: number) : Observable<number>{
+         let headers = new Headers({ 'Content-Type': 'application/json' });
+         let options = new RequestOptions({ headers: headers });
+         const LIKE_POST_URL = `http://52.178.29.14/api/Post/like?post_id=${postId}`;
 
-     getCountry(id) {
-          const country = LEAGUES
-            .find(league => league.country_id === id);
-         if (!country)
-            return "Desconocido";
-        return country.country_name;
+         return this.http
+            .post(LIKE_POST_URL, options)
+            .map((response : Response) => response.json());
      }
 }

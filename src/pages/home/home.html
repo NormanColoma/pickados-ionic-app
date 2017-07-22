@@ -29,8 +29,19 @@
         - {{ post.GetAllPickOfPost[0].GetAllMatchOfPick[0].GetAwayOfEvent_away.Name}}</h2>
       <p>{{ post.GetAllPickOfPost[0].Odd }} {{ post.GetAllPickOfPost[0].Description }} {{ post.Stake }}/10</p>
     </ion-item>
-    <ion-item color="primary">
-      <span item-left>{{ post.Created_at | date:'shortDate'}}</span>
-    </ion-item>
+    <ion-row>
+      <ion-col item-left>
+        <button ion-button icon-left clear small (click)="likePost(post.Id)">
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{ post.Likes }}</div>
+      </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{ post.Created_at | date:'shortDate'}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
   </ion-card>
 </ion-content>

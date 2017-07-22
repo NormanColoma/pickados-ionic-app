@@ -1,4 +1,4 @@
-<ion-header *ngIf="events">
+<ion-header *ngIf="items">
   <ion-navbar color="elements">
     <ion-title>
       Eventos de hoy
@@ -6,9 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="events" padding>
+<ion-content *ngIf="items" padding>
   <ion-list>
-    <ion-item *ngFor="let event of events;">
+    <ion-item *ngFor="let event of items;">
       <ion-avatar item-start>
         <ion-icon name="football" item-start large class="custom-ball-icon"></ion-icon>
       </ion-avatar>
@@ -17,4 +17,11 @@
       <p>{{ event.match_hometeam_name }} - {{ event.match_awayteam_name }}</p>
     </ion-item>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando eventos..."></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+  
 </ion-content>
