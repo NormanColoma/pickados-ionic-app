@@ -6,6 +6,7 @@ import { Account } from "../auth/models/account.interface";
 import { AuthService } from "../auth/auth.service";
 
 import 'rxjs/Rx';
+import { AuthPage } from "../auth/auth";
 
 @Component({
   selector: 'page-home',
@@ -21,8 +22,17 @@ export class HomePage {
   constructor(public navCtrl: NavController, private timelineService: TimelineService, private authService: AuthService) {
 
   }
+  
+  ionViewCanEnter() {
+        this.authService.isLoggedIn().subscribe((val) => {
+            if (!val) {
+                this.navCtrl.setRoot(AuthPage);
+            }
+            return true; 
+        });
+    }
 
-  ionViewWillEnter() {
+  ionViewWillLoad() {
    
     this.authService.getUser()
       .switchMap(user => this.timelineService.loadTimeline(user.Id))

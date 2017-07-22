@@ -14,11 +14,11 @@ import { AuthService } from "../auth/auth.service";
 })
 export class ContactPage {
 
-  private tipsters : Account [];
-  private follows : Account [];
+  private tipsters: Account[];
+  private follows: Account[];
   private userId: number;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     private tipsterService: TipsterService, private authService: AuthService,
     private toastCtrl: ToastController) {
 
@@ -34,22 +34,25 @@ export class ContactPage {
         this.userId = user.Id;
         return this.tipsterService.getFollows(this.userId)
       })
-      .subscribe((follows : Account[]) => {
+      .subscribe((follows: Account[]) => {
         this.follows = follows;
-        debugger;
-        this.tipsterService.getTipstersPremium()
-          .subscribe((tipsters: Account []) => {
-            this.tipsters = tipsters
-          });
+        this.getTipsters();
       });
   }
 
-  follow(tipsterPremiumId: number){
+  getTipsters() {
+    this.tipsterService.getTipstersPremium()
+      .subscribe((tipsters: Account[]) => {
+        this.tipsters = tipsters
+      });
+  }
+
+  follow(tipsterPremiumId: number) {
     this.tipsterService.followTipsterPro(tipsterPremiumId, this.userId)
-      .subscribe((follows : boolean) => {
-         this.loadTipstersAndFollows();
-         const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
-         this.showToast(`Ahora estás suscrito a ${name}`);
+      .subscribe((follows: boolean) => {
+        this.loadTipstersAndFollows();
+        const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
+        this.showToast(`Ahora sigues a  ${name}`);
       });
   }
 
@@ -63,10 +66,10 @@ export class ContactPage {
 
   unfollow(tipsterPremiumId: number) {
     this.tipsterService.unfollowTipsterPro(tipsterPremiumId, this.userId)
-      .subscribe((follows : boolean) => {
-         this.loadTipstersAndFollows();
-         const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
-         this.showToast(`Ya no estás suscrito a ${name}`);
+      .subscribe((follows: boolean) => {
+        this.loadTipstersAndFollows();
+        const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
+        this.showToast(`Ya no sigues a ${name}`);
       });
   }
 

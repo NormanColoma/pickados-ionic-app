@@ -15,15 +15,6 @@ export class AuthPage{
     constructor(public navCtrl: NavController, private authService: AuthService,
     private toastCtrl: ToastController) {}
 
-    ionViewCanEnter() {
-        this.authService.isLoggedIn().subscribe((val) => {
-            if (val) {
-                this.navCtrl.setRoot(TabsPage);
-            }
-            return true; 
-        });
-    }
-
     handleLogin(credentials: AccountCredentials) {
         this.credentials = credentials;
         this.authService.login(credentials)

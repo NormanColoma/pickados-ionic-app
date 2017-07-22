@@ -31,8 +31,6 @@ export class TipsterService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        debugger;
-
          return this.http
             .post(FOLLOW_URL, {}, options)
             .map((response : Response) => response.json())  

@@ -1,4 +1,4 @@
-<ion-header *ngIf="tipsters">
+<ion-header>
   <ion-navbar color="elements">
     <ion-title>
       Tipsters Premium
@@ -6,15 +6,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="tipsters">
+<ion-content padding>
   <ion-list>
     <ion-item *ngFor="let tipster of tipsters;">
       <ion-thumbnail item-start>
-        <img src="assets/icon/64x64/64_1.png">
+        <img src="assets/icon/avatar.png">
       </ion-thumbnail>
       <h2>{{ tipster.Alias }}</h2>
-      <p>Pro desde - {{ tipster.Created_at | date: 'fullDate' }}</p>
-      <button ion-button clear item-end (click)="follow(tipster.Id)" *ngIf="!isUnfollowed(tipster.Id)">Suscribirme</button>
+      <p>Desde - {{ tipster.Created_at | date: 'longDate' }}</p>
+      <button ion-button clear item-end (click)="follow(tipster.Id)" *ngIf="!isUnfollowed(tipster.Id)">Seguir</button>
       <button ion-button clear item-end (click)="unfollow(tipster.Id)" *ngIf="isUnfollowed(tipster.Id)">Dejar de seguir</button>
     </ion-item>
   </ion-list>

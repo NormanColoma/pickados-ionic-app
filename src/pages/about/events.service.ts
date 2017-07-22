@@ -20,7 +20,6 @@ export class EventService {
 
      loadEvents() : Observable<Event[]> {
          const date = new Date();
-         const time = `${date.getHours().toString()}:${date.getMinutes().toString()}`;
          const event_date = date.getFullYear()+"-"+ (date.getMonth()+1) + "-" + date.getDate();
          const EVENTS_URL = `http://52.178.29.14/api/events?from=${event_date}&to=${event_date}`;
          

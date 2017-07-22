@@ -18,17 +18,17 @@ export class AboutPage {
   private maxEvents = 25;
 
   constructor(public navCtrl: NavController, private eventService: EventService) {
-    this.loadEvents();
+    
   }
 
-  ionViewWillEnter() {
-    
+  ionViewWillLoad() {
+    this.loadEvents();
   }
 
   loadEvents() {
     this.eventService.loadEvents()
       .subscribe((events: Event[]) => {
-        this.events = events;
+        this.events = this.filterByEventsNotStartedYet(events);
         for (var i = 0; i < this.maxEvents; i++) {
           this.items.push(this.events[i]);
         }
@@ -54,6 +54,13 @@ export class AboutPage {
     } else {
       infiniteScroll.enabled(false);
     }
+  }
+
+  filterByEventsNotStartedYet(events) {
+    const date = new Date();
+    const time = `${date.getHours().toString()}:${date.getMinutes().toString()}`;
+    
+    return events.filter(event => event.match_time >= time);
   }
 
 }
