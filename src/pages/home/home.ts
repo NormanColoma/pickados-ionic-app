@@ -27,8 +27,6 @@ export class HomePage {
     this.authService.getUser()
       .switchMap(user => this.timelineService.loadTimeline(user.Id))
       .subscribe((posts : Post[]) => {
-        debugger;
-        
         this.posts = posts;
       });
   }
