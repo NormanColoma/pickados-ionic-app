@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="elements">
+      <ion-title>Detalles Tipster Pro</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/icon/avatar.png">
+        </ion-avatar>
+        <h2>{{tipster.Alias}}</h2>
+        <p>Premium desde {{tipster.Created_at | date:'longDate'}}</p>
+      </ion-item>
+
+      <ion-item>
+        Contacto
+        <ion-note item-end>
+          {{tipster.Email}}
+        </ion-note>
+      </ion-item>
+       <ion-item>
+        Cuota de suscripción
+        <ion-note item-end>
+          {{tipster.Subscription_fee}} €
+        </ion-note>
+      </ion-item>
+  </ion-list>
+  
+   <div padding>
+    <button ion-button color="primary" block *ngIf="isUnfollowed" (click)="follow(tipster.Id)">Seguir</button>
+     <button ion-button color="primary" block *ngIf="!isUnfollowed" (click)="unfollow(tipster.Id)">Dejar de seguir</button>
+  </div>
+ 
+</ion-content>

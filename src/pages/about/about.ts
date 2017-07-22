@@ -29,6 +29,9 @@ export class AboutPage {
     this.eventService.loadEvents()
       .subscribe((events: Event[]) => {
         this.events = this.filterByEventsNotStartedYet(events);
+        if (this.events.length < 25) {
+          this.maxEvents = this.events.length;
+        }
         for (var i = 0; i < this.maxEvents; i++) {
           this.items.push(this.events[i]);
         }

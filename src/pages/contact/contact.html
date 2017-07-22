@@ -13,9 +13,8 @@
         <img src="assets/icon/avatar.png">
       </ion-thumbnail>
       <h2>{{ tipster.Alias }}</h2>
-      <p>Desde - {{ tipster.Created_at | date: 'longDate' }}</p>
-      <button ion-button clear item-end (click)="follow(tipster.Id)" *ngIf="!isUnfollowed(tipster.Id)">Seguir</button>
-      <button ion-button clear item-end (click)="unfollow(tipster.Id)" *ngIf="isUnfollowed(tipster.Id)">Dejar de seguir</button>
+      <p>{{ tipster.Created_at | date: 'longDate' }}</p>
+      <button ion-button clear item-end (click)="navigateToDetail(tipster.Id)">Ver</button>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -4,6 +4,7 @@ import { TipsterService } from "../tabs/tipster.service";
 
 import { Account } from "../auth/models/account.interface";
 import { AuthService } from "../auth/auth.service";
+import { TipsterDetailPage } from "./tipster-detail/tipster-detail";
 
 @Component({
   selector: 'page-contact',
@@ -47,40 +48,26 @@ export class ContactPage {
       });
   }
 
-  follow(tipsterPremiumId: number) {
-    this.tipsterService.followTipsterPro(tipsterPremiumId, this.userId)
-      .subscribe((follows: boolean) => {
-        this.loadTipstersAndFollows();
-        const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
-        this.showToast(`Ahora sigues a  ${name}`);
-      });
-  }
-
   isUnfollowed(tipsterPremiumId: number) {
     if (this.follows) {
-      const result = this.follows.some(tipsterFollowed => tipsterFollowed.Id === tipsterPremiumId);
-      return result;
+      const result = this.follows.find(tipsterFollowed => tipsterFollowed.Id === tipsterPremiumId);
+      if(result) {
+        return false;
+      }
+      return true;
     }
     return false;
   }
 
-  unfollow(tipsterPremiumId: number) {
-    this.tipsterService.unfollowTipsterPro(tipsterPremiumId, this.userId)
-      .subscribe((follows: boolean) => {
-        this.loadTipstersAndFollows();
-        const name = this.tipsters.find(tipster => tipster.Id === tipsterPremiumId).Alias;
-        this.showToast(`Ya no sigues a ${name}`);
-      });
-  }
+  navigateToDetail(tipsterId: number) {
+    const tipster= this.tipsters.find(tipster => tipster.Id === tipsterId);
+    const unfollowed = this.isUnfollowed(tipsterId);
 
-  showToast(message: string) {
-    let toast = this.toastCtrl.create({
-      message,
-      duration: 3000,
-      position: 'top'
+    this.navCtrl.push(TipsterDetailPage, {
+      tipster,
+      userId: this.userId,
+      isUnfollowed: unfollowed
     });
-
-    toast.present();
   }
 
 }

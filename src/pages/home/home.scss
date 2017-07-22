@@ -2,4 +2,8 @@ page-home {
     .item-md h2 {
         font-size: 1.4rem !important;
     }
+
+    [padding] h2:first-child {
+        margin-top: 0px;
+    }
 }
