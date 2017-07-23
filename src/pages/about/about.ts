@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { EventService } from "./events.service";
 
 import { Event } from "../home/models/event.interface";
+import { PostFormPage } from "./post-form/post-form";
 
 @Component({
   selector: 'page-about',
@@ -17,7 +18,9 @@ export class AboutPage {
   private items: Event[] = [];
   private maxEvents = 25;
 
-  constructor(public navCtrl: NavController, private eventService: EventService) {
+  constructor(public navCtrl: NavController, 
+    private eventService: EventService,
+    public modalCtrl: ModalController) {
     
   }
 
@@ -64,6 +67,12 @@ export class AboutPage {
     const time = `${date.getHours().toString()}:${date.getMinutes().toString()}`;
     
     return events.filter(event => event.match_time >= time);
+  }
+
+  showPostForm(eventId) {
+    const event = this.events.find(event => event.match_id === eventId);
+    let modal = this.modalCtrl.create(PostFormPage, { event });
+    modal.present();
   }
 
 }

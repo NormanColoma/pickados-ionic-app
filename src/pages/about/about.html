@@ -8,14 +8,14 @@
 
 <ion-content *ngIf="items" padding>
   <ion-list>
-    <ion-item *ngFor="let event of items;">
+    <a ion-item (click)="showPostForm(event.match_id)" *ngFor="let event of items;">
       <ion-avatar item-start>
         <ion-icon name="football" item-start large class="custom-ball-icon"></ion-icon>
       </ion-avatar>
       <h2>{{ event.country_name }} > {{ event.league_name }}</h2>
       <h3>{{ event.match_time }}</h3>
       <p>{{ event.match_hometeam_name }} - {{ event.match_awayteam_name }}</p>
-    </ion-item>
+    </a>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

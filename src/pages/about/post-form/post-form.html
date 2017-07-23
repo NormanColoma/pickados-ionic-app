@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar color="elements">
+        <ion-title>
+            Publicar post
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+        <span ion-text color="light">Cancelar</span>
+      </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <ion-item-divider>
+            <h1>{{ event.match_hometeam_name }} - {{ event.match_awayteam_name }}</h1>
+            <p>
+                {{ event.country_name }} > {{ event.league_name }}
+            </p>
+        </ion-item-divider>
+        <ion-item no-lines>
+            <h1>{{ event.match_hometeam_name }} </h1>
+            <p> Cuota: </p>
+        </ion-item>
+</ion-content>
