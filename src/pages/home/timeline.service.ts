@@ -9,7 +9,7 @@ import { ODDS } from "./constants/odds";
 import { LEAGUES } from "./constants/leagues";
 
 
-const API_URL : string = 'http://52.178.29.14/api/Tipster';
+const API_URL : string = 'http://52.174.166.194/api/Tipster';
 
 
 @Injectable()
@@ -32,7 +32,7 @@ export class TimelineService {
      likePost(postId: number) : Observable<number>{
          let headers = new Headers({ 'Content-Type': 'application/json' });
          let options = new RequestOptions({ headers: headers });
-         const LIKE_POST_URL = `http://52.178.29.14/api/Post/like?post_id=${postId}`;
+         const LIKE_POST_URL = `http://52.174.166.194/api/Post/like?post_id=${postId}`;
 
          return this.http
             .post(LIKE_POST_URL, options)

@@ -9,7 +9,8 @@ import { Event } from "../home/models/event.interface";
 import { LEAGUES } from "../home/constants/leagues";
 import { ODDS } from "../home/constants/odds";
 
-const API_URL : string = 'http://52.178.29.14/api/Tipster'
+
+const API_URL : string = 'http://52.174.166.194/api/Tipster'
 
 @Injectable()
 export class EventService {
@@ -21,7 +22,7 @@ export class EventService {
      loadEvents() : Observable<Event[]> {
          const date = new Date();
          const event_date = date.getFullYear()+"-"+ (date.getMonth()+1) + "-" + date.getDate();
-         const EVENTS_URL = `http://52.178.29.14/api/events?from=${event_date}&to=${event_date}`;
+         const EVENTS_URL = `http://52.174.166.194/api/events?from=${event_date}&to=${event_date}`;
          
          return this.http
             .get(EVENTS_URL)
@@ -46,7 +47,7 @@ export class EventService {
      loadEvent(match_id:string): Observable<Event> {
          const date = new Date();
          const event_date = date.getFullYear()+"-"+ (date.getMonth()+1) + "-" + date.getDate();
-         const EVENTS_URL = `http://52.178.29.14/api/events?from=${event_date}&to=${event_date}`;
+         const EVENTS_URL = `http://52.174.166.194/api/events?from=${event_date}&to=${event_date}`;
          
          return this.http
             .get(EVENTS_URL)

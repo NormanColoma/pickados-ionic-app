@@ -9,7 +9,7 @@ import { Observable } from "rxjs/Observable";
 import { AccountCredentials } from "./models/account-credentials.interface";
 import { Account } from "./models/account.interface";
 
-const API_URL : string = 'http://52.178.29.14/api/Tipster'
+const API_URL : string = 'http://52.174.166.194/api/Tipster'
 
 @Injectable()
 export class AuthService{
